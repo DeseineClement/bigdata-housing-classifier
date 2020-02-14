@@ -1,0 +1,6 @@
+[submodule "bigdata-housing-classifier-dataset"]
+	path = bigdata-housing-classifier-dataset
+	url = https://github.com/DeseineClement/bigdata-housing-classifier-dataset.git
+[submodule "visu"]
+	path = visu
+	url = https://github.com/nlehir/visu
