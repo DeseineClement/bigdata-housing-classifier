@@ -130,5 +130,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#IntelliJ Directories
+# IntelliJ Directories
 .idea/
+
+# Dataset Output directory
+dataset/

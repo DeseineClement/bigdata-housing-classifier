@@ -1,6 +1,11 @@
 DATASET_REQUIREMENT_FILE	= bigdata-housing-classifier-dataset/requirements.txt
 DATASET_VIRTUALENV			= dataset-venv
 DATASET_ACTIVATE_SCRIPT		= $(DATASET_VIRTUALENV)/bin/activate
+DATASET_ENTRY_POINT_FILE	= bigdata-housing-classifier-dataset/src/dataset.py
+
+DATASET_OUTPUT_DIRECTORY	= dataset
+DATASET_OUTPUT_FILE			= $(DATASET_OUTPUT_DIRECTORY)/data.csv
+DATASET_OUTPUT_FILE_ROWS	= 10000
 
 CLASSIFIER_REQUIREMENT_FILE	= requirements.txt
 CLASSIFIER_VIRTUALENV		= classifier-venv
@@ -21,6 +26,18 @@ define install_dependencies
 	fi
 endef
 
+# $(1): path to the dataset output directory
+# $(3): path to the dataset output file
+# $(3): path to the virtualenv activate script file
+# $(4): path to the dataset entry point file
+# $(5): number of rows of the dataset output file
+define generate_dataset
+	@if [ ! -d $(1) ]; then	\
+		mkdir -p $(1);		\
+	fi
+	@(source $(3) && python $(4) --output-file=$(2) --rows=$(5))
+endef
+
 virtualenv: virtualenv.dataset virtualenv.classifier
 
 virtualenv.dataset:
@@ -31,4 +48,7 @@ virtualenv.classifier:
 	$(call generate_virtualenv,$(CLASSIFIER_VIRTUALENV))
 	$(call install_dependencies,$(CLASSIFIER_ACTIVATE_SCRIPT),$(CLASSIFIER_REQUIREMENT_FILE))
 
-.PHONY: virtualenv virtualenv.dataset virtualenv.classifier
+dataset: virtualenv.dataset
+	$(call generate_dataset,$(DATASET_OUTPUT_DIRECTORY),$(DATASET_OUTPUT_FILE),$(DATASET_ACTIVATE_SCRIPT),$(DATASET_ENTRY_POINT_FILE),$(DATASET_OUTPUT_FILE_ROWS))
+
+.PHONY: virtualenv virtualenv.dataset virtualenv.classifier dataset
