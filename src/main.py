@@ -1,4 +1,5 @@
 from system_io import input, output
+from classifier import dataset
 
 
 def main():
@@ -7,7 +8,8 @@ def main():
     except RuntimeError as err:
         output.error(err)
         return
-    print(dataset_file, dataset_columns)
+    data = dataset.from_csv(dataset_file)
+    dataset.analyse(data, dataset_columns)
 
 
 if __name__ == "__main__":
