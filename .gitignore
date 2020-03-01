@@ -133,5 +133,12 @@ dmypy.json
 # IntelliJ Directories
 .idea/
 
+# VSCode and its plugins directories
+.vscode/
+.history/
+
 # Dataset Output directory
 dataset/
+
+# Visualization result directory
+visu-result/

@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 DATASET_REQUIREMENT_FILE	= bigdata-housing-classifier-dataset/requirements.txt
 DATASET_VIRTUALENV			= dataset-venv
 DATASET_ACTIVATE_SCRIPT		= $(DATASET_VIRTUALENV)/bin/activate
@@ -37,6 +39,8 @@ define generate_dataset
 	fi
 	@(source $(3) && python $(4) --output-file=$(2) --rows=$(5))
 endef
+
+all: virtualenv dataset
 
 virtualenv: virtualenv.dataset virtualenv.classifier
 
