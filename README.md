@@ -23,3 +23,8 @@ Arguments are:
     --c | --columns {column1}, {column2}, ...
     --v | --visus {visu1}, {visu2} // Default is: scatter_plot, histogram
     --r | --range {index1}, {index2} // Defauls is: 0, 1000
+
+## Predictive Analysis
+
+    ./classifier-venv/bin/python3 src/analysis/analysis.py
+    
