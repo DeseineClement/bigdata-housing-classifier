@@ -15,7 +15,7 @@ Both rules can be called using <code>make</code>
 
 ## Visualize dataset
 
-    /classifier-venv/bin/python3 src/main.py
+    ./classifier-venv/bin/python3 src/main.py
 
 Arguments are:
 
